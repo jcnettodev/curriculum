@@ -6,7 +6,7 @@ Comandos mais usados para gerenciar o projeto na VPS.
 
 ```bash
 # Atualizar projeto (após fazer push no Git)
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo ./deployment/deploy.sh
 ```
 
@@ -56,7 +56,7 @@ sudo systemctl reload nginx
 ## Limpar Cache
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Limpar todo o cache
 sudo php artisan cache:clear
@@ -73,7 +73,7 @@ sudo php artisan view:cache
 ## Recompilar Assets
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Compilar para produção
 sudo npm run build
@@ -85,7 +85,7 @@ sudo npm run dev
 ## Permissões
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Corrigir permissões
 sudo chown -R www-data:www-data .
@@ -96,7 +96,7 @@ sudo chmod -R 775 storage bootstrap/cache
 ## Banco de Dados
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Criar banco SQLite
 sudo touch database/database.sqlite
@@ -169,7 +169,7 @@ ss -tuln
 ## Git
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Ver status
 git status
@@ -228,7 +228,7 @@ sudo systemctl restart php8.2-fpm
 
 ### Erro 403 Forbidden
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo chown -R www-data:www-data .
 sudo chmod -R 755 .
 sudo chmod -R 775 storage bootstrap/cache
@@ -240,14 +240,14 @@ sudo chmod -R 775 storage bootstrap/cache
 tail -50 /var/www/curriculum/curriculum-app/storage/logs/laravel.log
 
 # Limpar cache
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo php artisan cache:clear
 sudo php artisan config:clear
 ```
 
 ### Assets Não Carregam
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo npm run build
 sudo chown -R www-data:www-data public/build
 ```

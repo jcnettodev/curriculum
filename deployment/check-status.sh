@@ -62,7 +62,7 @@ else
 fi
 
 # Verificar diretório do projeto
-PROJECT_DIR="/var/www/curriculum/curriculum-app"
+PROJECT_DIR="/var/www/curriculum"
 echo -e "\n${YELLOW}Projeto:${NC}"
 if [ -d "$PROJECT_DIR" ]; then
     echo -e "${GREEN}✓${NC} Diretório: ${GREEN}$PROJECT_DIR${NC}"

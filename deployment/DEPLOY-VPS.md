@@ -58,7 +58,7 @@ Este script irá instalar:
 ### 2.1. Configurar Arquivo .env
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Copiar o arquivo de exemplo
 sudo cp .env.example .env
@@ -123,7 +123,7 @@ sudo systemctl restart nginx
 ### 3.1. Executar Script de Deploy
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Dar permissão de execução
 sudo chmod +x deployment/deploy.sh
@@ -172,7 +172,7 @@ dig seu-dominio.com +short
 ### 4.2. Executar Script de SSL
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Dar permissão de execução
 sudo chmod +x deployment/setup-ssl.sh
@@ -204,7 +204,7 @@ Sempre que você fizer alterações no código e fizer push para o repositório:
 ssh seu-usuario@ip-da-vps
 
 # Ir para o diretório do projeto
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # Executar deploy (atualiza automaticamente)
 sudo ./deployment/deploy.sh
@@ -256,7 +256,7 @@ sudo systemctl restart nginx
 ### Limpar Cache do Laravel
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 sudo php artisan cache:clear
 sudo php artisan config:clear
@@ -290,7 +290,7 @@ sudo systemctl status php8.2-fpm
 
 **Solução:**
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo chown -R www-data:www-data .
 sudo chmod -R 755 .
 sudo chmod -R 775 storage bootstrap/cache
@@ -316,7 +316,7 @@ sudo nano /var/www/curriculum/curriculum-app/.env
 
 **Solução:**
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo npm run build
 sudo chown -R www-data:www-data public/build
 ```

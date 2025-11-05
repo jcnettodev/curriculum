@@ -43,7 +43,7 @@ Este diretório contém todos os scripts necessários para fazer deploy do proje
 ```bash
 # 1. Na VPS, clonar o repositório
 git clone seu-repo /var/www/curriculum
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 
 # 2. Instalar dependências do sistema
 sudo ./deployment/install-vps.sh
@@ -67,7 +67,7 @@ sudo ./deployment/setup-ssl.sh
 Sempre que fizer alterações no código:
 
 ```bash
-cd /var/www/curriculum/curriculum-app
+cd /var/www/curriculum
 sudo ./deployment/deploy.sh
 ```
 
