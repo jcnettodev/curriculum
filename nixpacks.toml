@@ -3,9 +3,7 @@ nixPkgs = ["...", "python311Packages.supervisor"]
 
 [phases.build]
 cmds = [
-    "mkdir -p /etc/supervisor/conf.d/",
-    "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
-    "cp /assets/supervisord.conf /etc/supervisord.conf"
+    "mkdir -p /etc/supervisor/conf.d/"
 ]
 
 [start]
@@ -18,20 +16,24 @@ cmd = 'bash /assets/start.sh'
 # Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
 
+# Copy supervisor configs
+mkdir -p /etc/supervisor/conf.d/
+cp /assets/worker-*.conf /etc/supervisor/conf.d/
+
 # Start supervisor
-supervisord -c /etc/supervisord.conf -n
+supervisord -c /assets/supervisord.conf -n
 '''
 
 "supervisord.conf" = '''
 [unix_http_server]
-file=/assets/supervisor.sock
+file=/tmp/supervisor.sock
 
 [supervisord]
-logfile=/var/log/supervisord.log
+logfile=/tmp/supervisord.log
 logfile_maxbytes=50MB
 logfile_backups=10
 loglevel=info
-pidfile=/assets/supervisord.pid
+pidfile=/tmp/supervisord.pid
 nodaemon=false
 silent=false
 minfds=1024
@@ -41,7 +43,7 @@ minprocs=200
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
 [supervisorctl]
-serverurl=unix:///assets/supervisor.sock
+serverurl=unix:///tmp/supervisor.sock
 
 [include]
 files = /etc/supervisor/conf.d/*.conf
@@ -53,8 +55,10 @@ process_name=%(program_name)s_%(process_num)02d
 command=nginx -c /etc/nginx.conf
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/worker-nginx.log
-stderr_logfile=/var/log/worker-nginx.log
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
 '''
 
 "worker-phpfpm.conf" = '''
@@ -63,8 +67,10 @@ process_name=%(program_name)s_%(process_num)02d
 command=php-fpm -y /assets/php-fpm.conf -F
 autostart=true
 autorestart=true
-stdout_logfile=/var/log/worker-phpfpm.log
-stderr_logfile=/var/log/worker-phpfpm.log
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
 '''
 
 "php-fpm.conf" = '''
