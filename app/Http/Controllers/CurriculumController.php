@@ -15,7 +15,7 @@ class CurriculumController extends Controller
                 'location' => 'Sorocaba - SP, Brasil',
                 'linkedin' => 'https://www.linkedin.com/in/jos%C3%A9-carlos-vieira-52b401397/',
                 'github' => 'https://github.com/jcnettodev',
-                'website' => 'https://seusite.com',
+                'website' => 'https://cv.euonline.site/',
                 'photo' => 'https://avatars.githubusercontent.com/u/241758480?s=400&u=428580bc0b01e1819b278c9599dcea6b735d6e1c&v=4',
             ],
             'about' => 'Vindo de uma carreira empreendedora em eletrônica, mergulhei no mundo da programação há mais de um ano e me apaixonei por construir soluções que resolvem problemas reais. Minha experiência prévia me deu uma forte base em lógica e diagnóstico, que agora aplico no desenvolvimento. Estou sempre em busca de novos desafios e pronto para contribuir em um time dinâmico.',
