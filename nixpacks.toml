@@ -20,11 +20,19 @@ mkdir -p /app/storage/framework/sessions
 mkdir -p /app/storage/framework/views
 mkdir -p /app/bootstrap/cache
 
+# CRITICAL: Remove cached service providers (fixes Collision error)
+rm -f /app/bootstrap/cache/packages.php
+rm -f /app/bootstrap/cache/services.php
+
 # Fix permissions for Laravel
 chmod -R 775 /app/storage
 chmod -R 775 /app/bootstrap/cache
 chown -R www-data:www-data /app/storage
 chown -R www-data:www-data /app/bootstrap/cache
+
+# Regenerate autoloader without dev packages
+cd /app
+composer dump-autoload --no-dev --optimize 2>/dev/null || true
 
 # Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
