@@ -44,14 +44,14 @@ class CurriculumController extends Controller
                     ]
                 ],
                 [
-                    'position' => 'Empreendedor',
+                    'position' => 'Empresário',
                     'company' => 'Techphone - Sorocaba / Ontech - Sorocaba',
                     'period' => '2018 - 2022',
                     'description' => 'Manutenção em eletrônicos em Geral (Games, Informática, Celulares, etc) Especializado em recuperação de dados e soluções para escritórios.',
                     'achievements' => [
                         'Mais de 1000 clientes atendidos',
                         'Referencia em Manutenção na cidade de Sorocaba',
-                        '',
+                        'Desenvolvimento de sistema de gerenciamento de estoque e vendas',
                     ]
                 ],
             ],
@@ -72,7 +72,7 @@ class CurriculumController extends Controller
             'skills' => [
                 'Backend' => ['PHP', 'Laravel', 'Node.js', 'Python', 'MySQL', 'PostgreSQL', 'Redis'],
                 'Frontend' => ['JavaScript', 'Vue.js', 'React', 'Tailwind CSS', 'HTML5', 'CSS3'],
-                'DevOps' => ['Docker', 'Git', 'CI/CD', 'AWS', 'Linux'],
+                'DevOps' => ['Docker', 'Git', 'CI/CD', 'Coolify', 'Linux'],
                 'Outras' => ['Metodologias Ágeis', 'TDD', 'Clean Code', 'Design Patterns', 'RESTful APIs'],
             ],
         ];
