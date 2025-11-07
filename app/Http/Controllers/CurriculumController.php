@@ -24,7 +24,7 @@ class CurriculumController extends Controller
                     'position' => 'Desenvolvedor Júnior full stack',
                     'company' => 'BSS - BANK',
                     'period' => '2025 - Presente',
-                    'description' => 'Desenvolvimento de aplicações web escaláveis usando Laravel, Livewire e Postgres. Planejamente em soluções inteligentes e eficientes.',
+                    'description' => 'Desenvolvimento de aplicações web escaláveis usando Laravel, Livewire e Postgres. Planejamento em soluções inteligentes e eficientes.',
                     'achievements' => [
                         'Implementação de arquitetura de microserviços',
                         'Revisão lógicas de negócio e arquitetura de software, visando melhorar a escalabilidade e manutenibilidade do sistema.',
