@@ -2,9 +2,7 @@
 nixPkgs = ["...", "python311Packages.supervisor"]
 
 [phases.build]
-cmds = [
-    "mkdir -p /etc/supervisor/conf.d/"
-]
+cmds = []
 
 [start]
 cmd = 'bash /assets/start.sh'
@@ -13,11 +11,14 @@ cmd = 'bash /assets/start.sh'
 "start.sh" = '''
 #!/bin/bash
 
+# Create required directories
+mkdir -p /var/log/nginx
+mkdir -p /etc/supervisor/conf.d/
+
 # Transform the nginx configuration
 node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
 
 # Copy supervisor configs
-mkdir -p /etc/supervisor/conf.d/
 cp /assets/worker-*.conf /etc/supervisor/conf.d/
 
 # Start supervisor
