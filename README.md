@@ -1,149 +1,243 @@
-# Página de Currículo - Laravel + Tailwind CSS 4.1
+# 📄 Currículo Digital - Laravel
 
-Uma página de currículo moderna, responsiva e elegante desenvolvida com Laravel e Tailwind CSS 4.1.
+> Meu currículo profissional online, desenvolvido com Laravel 11, Tailwind CSS 4.1 e deploy automatizado com Coolify.
 
-## Características
+<div align="center">
 
-- Design moderno e profissional
-- Totalmente responsivo (mobile, tablet, desktop)
-- Animações CSS suaves e elegantes
-- Tailwind CSS 4.1 com configuração personalizada
-- Efeitos visuais interativos
-- Otimizado para performance
-- Fácil personalização
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 
-## Requisitos
+[🌐 Ver Online](https://cv.euonline.site)
+
+</div>
+
+---
+
+## ✨ Características
+
+- 🎨 **Design Moderno** - Interface clean e profissional
+- 📱 **Totalmente Responsivo** - Funciona perfeitamente em mobile, tablet e desktop
+- ⚡ **Performance Otimizada** - Carregamento rápido e experiência fluida
+- 🎭 **Animações Suaves** - Transições elegantes em CSS puro
+- 🚀 **Deploy Automatizado** - CI/CD com Coolify e Nixpacks
+- 🔒 **HTTPS Automático** - SSL/TLS com Let's Encrypt
+
+---
+
+## 🛠️ Tecnologias
+
+### Backend
+- **Laravel 11** - Framework PHP moderno e elegante
+- **PHP 8.2+** - Linguagem de programação
+
+### Frontend
+- **Tailwind CSS 4.1** - Framework CSS utility-first
+- **Vite** - Build tool ultra-rápido
+- **Blade Templates** - Sistema de templates do Laravel
+
+### Deploy & Infraestrutura
+- **Coolify** - Plataforma de deploy self-hosted
+- **Nixpacks** - Sistema de build automático
+- **Docker** - Containerização
+- **Nginx** - Servidor web
+- **PHP-FPM** - Process manager para PHP
+- **Supervisor** - Gerenciador de processos
+
+---
+
+## 🚀 Deploy
+
+Este projeto está configurado para deploy automático usando **Coolify** com **Nixpacks**.
+
+### Pré-requisitos na VPS
+
+- Docker instalado
+- Coolify instalado ([guia oficial](https://coolify.io/docs/installation))
+- Domínio apontando para o servidor
+
+### Deploy Automático
+
+1. **Configure o projeto no Coolify:**
+   - Adicione o repositório Git
+   - Configure as variáveis de ambiente
+   - Defina o domínio
+
+2. **Push para o repositório:**
+   ```bash
+   git push origin main
+   ```
+
+3. **Deploy acontece automaticamente!** 🎉
+
+O arquivo `nixpacks.toml` contém toda a configuração necessária para:
+- Instalar dependências (Composer + npm)
+- Compilar assets (Vite)
+- Configurar Nginx + PHP-FPM
+- Gerenciar processos com Supervisor
+
+---
+
+## 💻 Desenvolvimento Local
+
+### Requisitos
 
 - PHP 8.2 ou superior
 - Composer
 - Node.js 18+ e npm
-- SQLite (já incluído no PHP)
 
-## Instalação
-
-### 1. Configurar Ambiente
-
-Crie o arquivo `.env` na raiz do projeto e copie o conteúdo do arquivo `dados.md`.
-
-### 2. Instalar Dependências
+### Instalação
 
 ```bash
-# Instalar dependências PHP
+# Clone o repositório
+git clone https://github.com/jcnettodev/curriculum.git
+cd curriculum
+
+# Instale as dependências PHP
 composer install
 
-# Instalar dependências JavaScript
+# Instale as dependências JavaScript
 npm install
 
-# Gerar chave da aplicação
+# Copie o arquivo de ambiente
+cp .env.example .env
+
+# Gere a chave da aplicação
 php artisan key:generate
 
-# Criar banco de dados SQLite
-touch database/database.sqlite
-```
-
-### 3. Compilar Assets
-
-```bash
-# Desenvolvimento (com hot reload)
-npm run dev
-
-# Produção
+# Compile os assets
 npm run build
 ```
 
-### 4. Iniciar Servidor
+### Executar Localmente
 
 ```bash
+# Em um terminal, inicie o servidor Laravel
 php artisan serve
+
+# Em outro terminal, compile os assets em modo watch
+npm run dev
 ```
 
 Acesse: http://localhost:8000
 
-## Personalização
+---
 
-### Editar Informações do Currículo
+## 📝 Personalização
 
-Edite o arquivo `app/Http/Controllers/CurriculumController.php` e altere os dados:
-
-- **Informações Pessoais**: Nome, título, contatos, foto
-- **Sobre Mim**: Descrição profissional
-- **Experiências**: Cargos, empresas, períodos, conquistas
-- **Formação**: Cursos, instituições
-- **Habilidades**: Tecnologias e competências
-
-### Personalizar Cores e Estilos
-
-- **Tailwind Config**: `tailwind.config.js`
-- **CSS Customizado**: `resources/css/app.css`
-- **Animações**: Configuradas em ambos os arquivos acima
-
-### Modificar Layout
-
-Edite a view principal em: `resources/views/curriculum.blade.php`
-
-## Estrutura do Projeto
+Para personalizar as informações do currículo, edite o arquivo:
 
 ```
-curriculum-app/
+app/Http/Controllers/CurriculumController.php
+```
+
+Este arquivo contém todos os dados estruturados em arrays PHP:
+
+```php
+$data = [
+    'personal' => [...],    // Informações pessoais
+    'about' => '...',       // Sobre você
+    'experiences' => [...], // Experiências profissionais
+    'education' => [...],   // Formação acadêmica
+    'skills' => [...],      // Habilidades técnicas
+];
+```
+
+### Customizar Estilos
+
+- **Cores e tema:** `tailwind.config.js`
+- **CSS customizado:** `resources/css/app.css`
+- **Layout:** `resources/views/curriculum.blade.php`
+
+---
+
+## 📦 Estrutura do Projeto
+
+```
+curriculum/
 ├── app/
 │   └── Http/
 │       └── Controllers/
-│           └── CurriculumController.php
+│           └── CurriculumController.php  # Dados do currículo
 ├── config/
+│   └── app.php                           # Configuração do Laravel
 ├── public/
-│   ├── css/
-│   └── js/
+│   ├── index.php                         # Entry point
+│   └── build/                            # Assets compilados (gitignore)
 ├── resources/
 │   ├── css/
-│   │   └── app.css
+│   │   └── app.css                       # Estilos Tailwind
 │   ├── js/
-│   │   ├── app.js
-│   │   └── bootstrap.js
+│   │   └── app.js                        # JavaScript
 │   └── views/
-│       └── curriculum.blade.php
+│       └── curriculum.blade.php          # Template principal
 ├── routes/
-│   └── web.php
-├── tailwind.config.js
-├── vite.config.js
-├── composer.json
-├── package.json
-└── dados.md
+│   └── web.php                           # Rotas da aplicação
+├── composer.json                         # Dependências PHP
+├── package.json                          # Dependências JavaScript
+├── nixpacks.toml                         # Configuração de deploy
+├── tailwind.config.js                    # Configuração Tailwind
+└── vite.config.js                        # Configuração Vite
 ```
 
-## Tecnologias Utilizadas
+---
 
-- **Laravel 11**: Framework PHP moderno
-- **Tailwind CSS 4.1**: Framework CSS utility-first
-- **Vite**: Build tool moderna e rápida
-- **JavaScript Vanilla**: Para animações interativas
-- **SQLite**: Banco de dados leve
+## 🔧 Variáveis de Ambiente
 
-## Animações Incluídas
+Principais variáveis necessárias para produção:
 
-- Fade In
-- Slide In (Left/Right)
-- Slide Up
-- Float
-- Hover Effects
-- Gradient Animation
-- Shine Effect
-- Scroll Animations
+```env
+APP_NAME=Curriculum
+APP_ENV=production
+APP_KEY=base64:...
+APP_DEBUG=false
+APP_URL=https://seudominio.com
 
-## Deploy
+# Nixpacks
+NIXPACKS_PHP_ROOT_DIR=/app/public
+NIXPACKS_PHP_FALLBACK_PATH=/index.php
+NIXPACKS_NODE_VERSION=22
 
-Para fazer deploy em produção:
+# Locale
+APP_LOCALE=pt_BR
+APP_FALLBACK_LOCALE=pt_BR
+```
 
-1. Configure o ambiente de produção
-2. Execute `npm run build` para compilar assets
-3. Configure o servidor web (Apache/Nginx)
-4. Aponte para a pasta `public/`
-5. Configure as permissões adequadas
+---
 
-## Licença
+## 🤝 Contribuindo
 
-MIT License - Sinta-se livre para usar e modificar.
+Contribuições são bem-vindas! Sinta-se à vontade para:
 
-## Suporte
+1. Fazer um fork do projeto
+2. Criar uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abrir um Pull Request
 
-Para dúvidas ou problemas, consulte a documentação oficial do Laravel: https://laravel.com/docs
+---
 
+## 📄 Licença
+
+Este projeto é open source e está disponível sob a [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Autor
+
+**José Carlos Vieira Netto**
+
+- 🌐 Website: [cv.euonline.site](https://cv.euonline.site)
+- 💼 LinkedIn: [José Carlos Vieira](https://www.linkedin.com/in/josé-carlos-vieira-52b401397/)
+- 🐙 GitHub: [@jcnettodev](https://github.com/jcnettodev)
+- 📧 Email: jcnetto.dev@gmail.com
+
+---
+
+<div align="center">
+
+**⭐ Se este projeto te ajudou, considere dar uma estrela!**
+
+Desenvolvido com ❤️ por [José Carlos Vieira Netto](https://github.com/jcnettodev)
+
+</div>
