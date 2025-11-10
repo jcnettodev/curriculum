@@ -50,7 +50,7 @@ class CurriculumController extends Controller
                     'description' => 'Manutenção em eletrônicos em Geral (Games, Informática, Celulares, etc) Especializado em recuperação de dados e soluções para escritórios.',
                     'achievements' => [
                         'Mais de 1000 clientes atendidos',
-                        'Referencia em Manutenção na cidade de Sorocaba',
+                        'Referência em manutenção na cidade de Sorocaba',
                         'Desenvolvimento de sistema de gerenciamento de estoque e vendas',
                     ]
                 ],
