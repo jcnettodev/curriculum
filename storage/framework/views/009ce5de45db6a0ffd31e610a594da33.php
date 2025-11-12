@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="<?php echo e($currentLocale == 'pt_BR' ? 'pt-BR' : 'en'); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo e($personal['name']); ?> - Currículo</title>
-    <meta name="description" content="Currículo profissional de <?php echo e($personal['name']); ?>">
+    <title><?php echo e($personal['name']); ?> - <?php echo e($currentLocale == 'pt_BR' ? 'Currículo' : 'Resume'); ?></title>
+    <meta name="description" content="<?php echo e($currentLocale == 'pt_BR' ? 'Currículo profissional de' : 'Professional resume of'); ?> <?php echo e($personal['name']); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,6 +15,21 @@
     <!-- Header Hero Section -->
     <header class="animated-gradient text-white py-20 md:py-32 relative overflow-hidden rounded-b-3xl md:rounded-b-[3rem]">
         <div class="absolute inset-0 bg-black opacity-10"></div>
+        
+        <!-- Language Switcher - Inside Header -->
+        <div class="absolute top-6 right-6 z-20 flex gap-2">
+            <a href="<?php echo e(route('setLocale', 'pt_BR')); ?>" 
+               class="flex items-center gap-2 <?php echo e($currentLocale == 'pt_BR' ? 'bg-white text-blue-600' : 'bg-white/20 backdrop-blur-sm text-white'); ?> px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all font-medium">
+                <span class="text-xl">🇧🇷</span>
+                <span class="hidden sm:inline">PT</span>
+            </a>
+            <a href="<?php echo e(route('setLocale', 'en')); ?>" 
+               class="flex items-center gap-2 <?php echo e($currentLocale == 'en' ? 'bg-white text-blue-600' : 'bg-white/20 backdrop-blur-sm text-white'); ?> px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all font-medium">
+                <span class="text-xl">🇺🇸</span>
+                <span class="hidden sm:inline">EN</span>
+            </a>
+        </div>
+        
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
                 <!-- Foto de Perfil -->
@@ -101,7 +116,7 @@
         
         <!-- Seção: Sobre mim -->
         <section id="about" class="mb-16 scroll-animate">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">Sobre Mim</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text"><?php echo e($sections['about']); ?></h2>
             <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 card-hover">
                 <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
                     <?php echo e($about); ?>
@@ -112,7 +127,7 @@
 
         <!-- Seção: Experiência Profissional -->
         <section id="experience" class="mb-16 scroll-animate">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Experiência Profissional</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text"><?php echo e($sections['experience']); ?></h2>
             <div class="space-y-6">
                 <?php $__currentLoopData = $experiences; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $experience): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 card-hover scroll-animate" 
@@ -161,7 +176,7 @@
 
         <!-- Seção: Formação Acadêmica -->
         <section id="education" class="mb-16 scroll-animate">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Formação Acadêmica</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text"><?php echo e($sections['education']); ?></h2>
             <div class="grid md:grid-cols-2 gap-6">
                 <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 card-hover scroll-animate" 
@@ -197,7 +212,7 @@
 
         <!-- Seção: Habilidades -->
         <section id="skills" class="mb-16 scroll-animate">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Habilidades Técnicas</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text"><?php echo e($sections['skills']); ?></h2>
             <div class="grid md:grid-cols-2 gap-6">
                 <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category => $skillList): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 card-hover">
@@ -223,14 +238,17 @@
         <section class="scroll-animate">
             <div class="gradient-bg rounded-2xl shadow-2xl p-8 md:p-12 text-center text-white">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Vamos Trabalhar Juntos?
+                    <?php echo e($cta['title']); ?>
+
                 </h2>
                 <p class="text-lg md:text-xl mb-8 opacity-90">
-                    Estou sempre aberto a novos desafios e oportunidades interessantes.
+                    <?php echo e($cta['description']); ?>
+
                 </p>
                 <a href="mailto:<?php echo e($personal['email']); ?>" 
                    class="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg shine-effect">
-                    Entre em Contato
+                    <?php echo e($cta['button']); ?>
+
                 </a>
             </div>
         </section>
@@ -241,10 +259,12 @@
     <footer class="bg-gray-900 text-white py-8 mt-16">
         <div class="container mx-auto px-4 md:px-6 text-center">
             <p class="text-gray-400">
-                &copy; <?php echo e(date('Y')); ?> <?php echo e($personal['name']); ?>. Todos os direitos reservados.
+                &copy; <?php echo e(date('Y')); ?> <?php echo e($personal['name']); ?>. <?php echo e($footer['copyright']); ?>
+
             </p>
             <p class="text-gray-500 text-sm mt-2">
-                Desenvolvido com Laravel e Tailwind CSS
+                <?php echo e($footer['made_with']); ?> Laravel <?php echo e($footer['by']); ?> <?php echo e($personal['name']); ?>
+
             </p>
         </div>
     </footer>
